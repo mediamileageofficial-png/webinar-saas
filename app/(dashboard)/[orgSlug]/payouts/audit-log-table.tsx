@@ -22,8 +22,8 @@ export async function AuditLogTable({ organizationId }: { organizationId: string
     .limit(50);
 
   return (
-    <div className="mt-2 overflow-hidden rounded-lg border border-slate-200 bg-white">
-      <table className="w-full text-left text-sm">
+    <div className="mt-2 overflow-x-auto rounded-lg border border-slate-200 bg-white">
+      <table className="w-full min-w-[42rem] text-left text-sm">
         <tbody className="divide-y divide-slate-100">
           {(!logs || logs.length === 0) && (
             <tr>

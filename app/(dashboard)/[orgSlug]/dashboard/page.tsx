@@ -144,7 +144,7 @@ export default async function DashboardPage({
           return (
             <div
               key={card.label}
-              className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+              className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md sm:p-5"
             >
               <div
                 className={`flex h-9 w-9 items-center justify-center rounded-lg ${TINTS[card.tint]}`}

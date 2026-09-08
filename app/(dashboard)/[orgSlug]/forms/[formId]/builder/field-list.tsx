@@ -20,7 +20,7 @@ export function FieldList({
           No fields yet - add at least one below before publishing.
         </p>
       ) : (
-        <ul className="mt-2 overflow-hidden rounded-lg border border-slate-200 bg-white">
+        <ul className="mt-2 overflow-x-auto rounded-lg border border-slate-200 bg-white">
           {fields.map((field, i) => (
             <FieldRow
               key={field.id}
