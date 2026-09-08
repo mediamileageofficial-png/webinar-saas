@@ -35,7 +35,7 @@ export default function OnboardingPage() {
             label="Organization name"
             name="name"
             type="text"
-            placeholder="Demo IAS Academy"
+            placeholder="Acme Academy"
             required
             onChange={(e) => {
               if (!slugTouched) setSlug(slugify(e.target.value));
@@ -46,7 +46,7 @@ export default function OnboardingPage() {
               label="Public URL"
               name="slug"
               type="text"
-              placeholder="demo-ias-academy"
+              placeholder="acme-academy"
               required
               value={slug}
               onChange={(e) => {

@@ -9,6 +9,7 @@ export type OrgRole =
 export interface OrgMembership {
   organizationId: string;
   organizationSlug: string;
+  organizationName: string;
   role: OrgRole;
 }
 
@@ -41,7 +42,7 @@ export async function getMembershipForOrgSlug(
 
   const { data, error } = await supabase
     .from("organization_members")
-    .select("role, organizations!inner(id, slug)")
+    .select("role, organizations!inner(id, slug, name)")
     .eq("user_id", user.id)
     .eq("organizations.slug", orgSlug)
     .maybeSingle();
@@ -57,6 +58,7 @@ export async function getMembershipForOrgSlug(
   return {
     organizationId: organization.id,
     organizationSlug: organization.slug,
+    organizationName: organization.name,
     role: data.role as OrgRole,
   };
 }

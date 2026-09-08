@@ -10,6 +10,7 @@ import { SidebarNav } from "./sidebar-nav";
 
 export function DashboardShell({
   orgSlug,
+  orgName,
   email,
   roleLabel,
   orgInitial,
@@ -17,6 +18,7 @@ export function DashboardShell({
   children,
 }: {
   orgSlug: string;
+  orgName: string;
   email: string;
   roleLabel: string;
   orgInitial: string;
@@ -54,7 +56,7 @@ export function DashboardShell({
         </span>
         <span className="min-w-0">
           <span className="block truncate text-sm font-semibold tracking-tight text-white">
-            {orgSlug}
+            {orgName}
           </span>
           <span className="block text-xs text-slate-500">{roleLabel}</span>
         </span>
@@ -134,7 +136,7 @@ export function DashboardShell({
               <Menu className="h-5 w-5" />
             </button>
             <span className="truncate text-sm font-medium text-slate-500">
-              {orgSlug}
+              {orgName}
             </span>
           </div>
           <div className="flex items-center gap-2 sm:gap-3">

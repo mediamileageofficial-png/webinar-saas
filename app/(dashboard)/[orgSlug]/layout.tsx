@@ -31,12 +31,15 @@ export default async function OrgDashboardLayout({
     notFound();
   }
 
+  const orgName = membership.organizationName || orgSlug;
+
   return (
     <DashboardShell
       orgSlug={orgSlug}
+      orgName={orgName}
       email={user.email ?? ""}
       roleLabel={ROLE_LABELS[membership.role] ?? membership.role}
-      orgInitial={orgSlug.charAt(0).toUpperCase()}
+      orgInitial={orgName.charAt(0).toUpperCase()}
       userInitial={(user.email ?? "?").charAt(0).toUpperCase()}
     >
       {children}

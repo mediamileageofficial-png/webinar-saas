@@ -43,9 +43,9 @@ delete from webinars where organization_id = '00000000-0000-0000-0000-0000000000
 insert into organizations (id, name, slug, contact_email, timezone)
 values (
   '00000000-0000-0000-0000-0000000000d1',
-  'Demo IAS Academy',
-  'demo-ias-academy',
-  'hello@demoiasacademy.example',
+  'WEBIFUNEL',
+  'webifunel',
+  'hello@webifunel.example',
   'Asia/Kolkata'
 )
 on conflict (id) do update set
