@@ -2,6 +2,8 @@
 
 import { useActionState, useState } from "react";
 import { TextField } from "@/components/ui/text-field";
+import { Wordmark } from "@/components/brand/wordmark";
+import { BrandBackdrop } from "@/components/brand/brand-backdrop";
 import { slugify } from "@/lib/validation/schemas/organization";
 import { createOrganizationAction, type CreateOrgActionState } from "./actions";
 
@@ -16,8 +18,10 @@ export default function OnboardingPage() {
   const [slugTouched, setSlugTouched] = useState(false);
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-50 px-4">
-      <div className="w-full max-w-md rounded-lg border border-slate-200 bg-white p-8 shadow-sm">
+    <div className="flex min-h-screen items-center justify-center px-4">
+      <BrandBackdrop />
+      <div className="w-full max-w-md rounded-xl border border-slate-200 bg-white p-8 shadow-sm">
+        <Wordmark className="mb-6" />
         <h1 className="text-xl font-semibold text-slate-900">
           Create your organization
         </h1>

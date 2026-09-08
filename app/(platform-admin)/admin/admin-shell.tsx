@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { LogOut, Menu, X } from "lucide-react";
 import { signOutAction } from "@/lib/auth/actions";
+import { BrandBackdrop } from "@/components/brand/brand-backdrop";
 import { AdminNav } from "./admin-nav";
 
 export function AdminShell({
@@ -70,7 +71,8 @@ export function AdminShell({
   );
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex min-h-screen">
+      <BrandBackdrop variant="subtle" />
       <aside className="hidden w-60 shrink-0 border-r border-slate-800 bg-slate-900 lg:block">
         {sidebarInner}
       </aside>

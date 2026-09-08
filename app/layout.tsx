@@ -12,9 +12,12 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Webinar SaaS",
+  title: {
+    default: "WEBIFUNEL",
+    template: "%s · WEBIFUNEL",
+  },
   description:
-    "Multi-tenant registration, payment, and lead automation platform for academies, coaching institutes, and event organizers.",
+    "WEBIFUNEL — multi-tenant registration, payment, and lead automation platform for academies, coaching institutes, and event organizers.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

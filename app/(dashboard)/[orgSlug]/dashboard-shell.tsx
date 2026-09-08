@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { Bell, LogOut, Menu, Search, X } from "lucide-react";
 import { signOutAction } from "@/lib/auth/actions";
+import { BrandBackdrop } from "@/components/brand/brand-backdrop";
 import { SidebarNav } from "./sidebar-nav";
 
 export function DashboardShell({
@@ -84,7 +85,8 @@ export function DashboardShell({
   );
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex min-h-screen">
+      <BrandBackdrop variant="subtle" />
       {/* Desktop sidebar — static */}
       <aside className="hidden w-60 shrink-0 border-r border-slate-800 bg-slate-900 lg:block">
         {sidebarInner}
