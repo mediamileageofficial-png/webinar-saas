@@ -84,7 +84,7 @@ export default async function DashboardPage({
     successfulPaymentsRes,
     attendanceRes,
   ] = await Promise.all([
-    supabase.from("organizations").select("settings").eq("id", orgId).maybeSingle(),
+    supabase.from("organizations").select("settings, timezone").eq("id", orgId).maybeSingle(),
     supabase
       .from("webinars")
       .select("id, name, status, start_time, end_time, event_date, speaker_name, recording_url")
@@ -131,14 +131,38 @@ export default async function DashboardPage({
 
   const totalRegistrations = totalRegistrationsRes.count ?? 0;
 
+  // Format dates on the server with the org's timezone so the client renders
+  // the exact same string (a locale/timezone-dependent format computed in a
+  // client component would hydrate-mismatch against the server render).
+  const tz = orgSettingsRes.data?.timezone || "Asia/Kolkata";
+  const dateFmt = new Intl.DateTimeFormat("en-IN", {
+    weekday: "short",
+    month: "short",
+    day: "numeric",
+    timeZone: tz,
+  });
+  const timeFmt = new Intl.DateTimeFormat("en-IN", {
+    hour: "numeric",
+    minute: "2-digit",
+    timeZone: tz,
+  });
+  const dayFmt = new Intl.DateTimeFormat("en-IN", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    timeZone: tz,
+  });
+
   const webinars = webinarsRes.data ?? [];
   const todayDate = new Date().toISOString().slice(0, 10);
   const toRow = (w: (typeof webinars)[number]): EventRow => ({
     id: w.id,
     name: w.name,
     status: w.status,
-    startISO: w.start_time,
-    endISO: w.end_time,
+    dateLabel: dateFmt.format(new Date(w.start_time)),
+    timeLabel: w.end_time
+      ? `${timeFmt.format(new Date(w.start_time))} – ${timeFmt.format(new Date(w.end_time))}`
+      : timeFmt.format(new Date(w.start_time)),
     speaker: w.speaker_name,
   });
   const upcoming = webinars
@@ -260,11 +284,7 @@ export default async function DashboardPage({
                     {w.name}
                   </Link>
                   <p className="text-xs text-slate-500">
-                    {new Date(w.start_time).toLocaleDateString(undefined, {
-                      month: "short",
-                      day: "numeric",
-                      year: "numeric",
-                    })}
+                    {dayFmt.format(new Date(w.start_time))}
                   </p>
                 </div>
                 <a

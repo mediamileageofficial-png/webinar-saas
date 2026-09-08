@@ -2,21 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import {
-  Calendar,
-  Clock,
-  Plus,
-  MoreVertical,
-  CalendarX2,
-} from "lucide-react";
+import { Calendar, Clock, Plus, MoreVertical, CalendarX2 } from "lucide-react";
 import { EmptyState } from "./empty-state";
 
 export type EventRow = {
   id: string;
   name: string;
   status: string;
-  startISO: string;
-  endISO: string | null;
+  dateLabel: string;
+  timeLabel: string;
   speaker: string | null;
 };
 
@@ -28,20 +22,6 @@ const STATUS_STYLES: Record<string, string> = {
   completed: "bg-slate-100 text-slate-500",
   cancelled: "bg-red-50 text-red-600",
 };
-
-function fmtDate(iso: string) {
-  return new Date(iso).toLocaleDateString(undefined, {
-    weekday: "short",
-    month: "short",
-    day: "numeric",
-  });
-}
-function fmtTime(iso: string) {
-  return new Date(iso).toLocaleTimeString(undefined, {
-    hour: "numeric",
-    minute: "2-digit",
-  });
-}
 
 function EventItem({ orgSlug, ev }: { orgSlug: string; ev: EventRow }) {
   return (
@@ -66,12 +46,11 @@ function EventItem({ orgSlug, ev }: { orgSlug: string; ev: EventRow }) {
         <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-slate-500">
           <span className="flex items-center gap-1">
             <Calendar className="h-3.5 w-3.5" />
-            {fmtDate(ev.startISO)}
+            {ev.dateLabel}
           </span>
           <span className="flex items-center gap-1">
             <Clock className="h-3.5 w-3.5" />
-            {fmtTime(ev.startISO)}
-            {ev.endISO ? ` – ${fmtTime(ev.endISO)}` : ""}
+            {ev.timeLabel}
           </span>
           {ev.speaker && <span className="truncate">· {ev.speaker}</span>}
         </div>
