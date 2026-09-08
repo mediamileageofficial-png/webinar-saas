@@ -130,7 +130,7 @@ export function WebinarForm({
       <button
         type="submit"
         disabled={pending}
-        className="mt-2 w-fit rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
+        className="mt-2 w-fit rounded-md bg-sky-500 px-4 py-2 text-sm font-medium text-white hover:bg-sky-600 disabled:opacity-60"
       >
         {pending ? "Saving..." : submitLabel}
       </button>

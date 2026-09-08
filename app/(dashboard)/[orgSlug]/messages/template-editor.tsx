@@ -73,7 +73,7 @@ export function TemplateEditor({
       <button
         type="submit"
         disabled={pending}
-        className="w-fit rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
+        className="w-fit rounded-md bg-sky-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-sky-600 disabled:opacity-60"
       >
         {pending ? "Saving..." : "Save new version"}
       </button>

@@ -63,7 +63,7 @@ export default async function PaymentsPage({
           <select
             name="status"
             defaultValue={status ?? ""}
-            className="w-48 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            className="w-48 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
           >
             <option value="">Any</option>
             <option value="success">Success</option>
@@ -75,7 +75,7 @@ export default async function PaymentsPage({
         </div>
         <button
           type="submit"
-          className="rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600"
+          className="rounded-md bg-sky-500 px-3 py-2 text-sm font-medium text-white hover:bg-sky-600"
         >
           Filter
         </button>

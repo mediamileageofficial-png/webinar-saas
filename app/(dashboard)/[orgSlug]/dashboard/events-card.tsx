@@ -26,7 +26,7 @@ const STATUS_STYLES: Record<string, string> = {
 function EventItem({ orgSlug, ev }: { orgSlug: string; ev: EventRow }) {
   return (
     <div className="flex items-center gap-4 px-5 py-4">
-      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-orange-500 text-lg font-bold text-white">
+      <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-lg bg-teal-400 text-lg font-bold text-white">
         {ev.name.charAt(0).toUpperCase()}
       </span>
       <div className="min-w-0 flex-1">
@@ -39,7 +39,7 @@ function EventItem({ orgSlug, ev }: { orgSlug: string; ev: EventRow }) {
         </span>
         <Link
           href={`/${orgSlug}/webinars/${ev.id}`}
-          className="mt-1 block truncate text-base font-semibold text-slate-900 hover:text-orange-600"
+          className="mt-1 block truncate text-base font-semibold text-slate-900 hover:text-sky-600"
         >
           {ev.name}
         </Link>
@@ -93,7 +93,7 @@ export function EventsCard({
               onClick={() => setTab(t)}
               className={`rounded-md px-3 py-1.5 text-sm font-medium capitalize transition-colors ${
                 tab === t
-                  ? "bg-slate-900 text-white"
+                  ? "bg-sky-500 text-white"
                   : "text-slate-500 hover:bg-slate-100 hover:text-slate-900"
               }`}
             >
@@ -104,14 +104,14 @@ export function EventsCard({
         <div className="flex items-center gap-2">
           <Link
             href={`/${orgSlug}/webinars`}
-            className="rounded-md px-2.5 py-1.5 text-sm font-medium text-slate-600 hover:text-orange-600"
+            className="rounded-md px-2.5 py-1.5 text-sm font-medium text-slate-600 hover:text-sky-600"
           >
             All webinars
           </Link>
           {canWrite && (
             <Link
               href={`/${orgSlug}/webinars/new`}
-              className="inline-flex items-center gap-1.5 rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-orange-600"
+              className="inline-flex items-center gap-1.5 rounded-md bg-sky-500 px-3 py-1.5 text-sm font-medium text-white transition-colors hover:bg-sky-600"
             >
               <Plus className="h-4 w-4" />
               Schedule

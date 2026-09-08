@@ -148,7 +148,7 @@ export function PublicRegistrationForm({
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-2 rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
+        className="mt-2 rounded-md bg-sky-500 px-4 py-2 text-sm font-medium text-white hover:bg-sky-600 disabled:opacity-60"
       >
         {status === "submitting" ? "Submitting..." : submitButtonText}
       </button>

@@ -84,7 +84,7 @@ export default function PayPage() {
             <button
               type="button"
               onClick={() => window.location.reload()}
-              className="mt-4 rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600"
+              className="mt-4 rounded-md bg-sky-500 px-4 py-2 text-sm font-medium text-white hover:bg-sky-600"
             >
               Try again
             </button>

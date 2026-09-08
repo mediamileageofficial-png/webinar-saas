@@ -39,7 +39,7 @@ export function CreateAutomationRuleForm({
             name="trigger"
             value={trigger}
             onChange={(e) => setTrigger(e.target.value)}
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
           >
             {automationTriggers
               .filter((t) => t === "before_webinar" || t === "after_webinar" || t === "no_show")
@@ -55,7 +55,7 @@ export function CreateAutomationRuleForm({
           <label className="text-sm font-medium text-slate-700">Applies to</label>
           <select
             name="webinarId"
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
           >
             <option value="">All webinars</option>
             {webinarOptions.map((w) => (
@@ -86,7 +86,7 @@ export function CreateAutomationRuleForm({
           <label className="text-sm font-medium text-slate-700">Channel</label>
           <select
             name="channel"
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
           >
             {messageChannels.map((c) => (
               <option key={c} value={c}>
@@ -99,7 +99,7 @@ export function CreateAutomationRuleForm({
           <label className="text-sm font-medium text-slate-700">Template</label>
           <select
             name="templateKey"
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
           >
             {templateKeys.map((k) => (
               <option key={k} value={k}>
@@ -115,7 +115,7 @@ export function CreateAutomationRuleForm({
       <button
         type="submit"
         disabled={pending}
-        className="w-fit rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
+        className="w-fit rounded-md bg-sky-500 px-3 py-2 text-sm font-medium text-white hover:bg-sky-600 disabled:opacity-60"
       >
         {pending ? "Creating..." : "Create rule"}
       </button>

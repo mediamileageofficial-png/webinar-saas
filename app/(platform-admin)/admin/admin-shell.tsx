@@ -38,7 +38,7 @@ export function AdminShell({
   const sidebarInner = (
     <div className="flex h-full flex-col px-3 py-5">
       <div className="flex items-center gap-2.5 px-2">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-orange-500 text-sm font-bold text-white">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white text-sm font-bold text-sky-600">
           P
         </span>
         <span className="text-sm font-semibold tracking-tight text-white">
@@ -50,18 +50,18 @@ export function AdminShell({
         <AdminNav />
       </div>
 
-      <div className="mt-4 flex items-center gap-2.5 border-t border-slate-800 px-2 pt-4">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-700 text-xs font-semibold text-slate-100">
+      <div className="mt-4 flex items-center gap-2.5 border-t border-white/20 px-2 pt-4">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-xs font-semibold text-white">
           {userInitial}
         </span>
-        <span className="block min-w-0 flex-1 truncate text-xs text-slate-300">
+        <span className="block min-w-0 flex-1 truncate text-xs text-sky-50">
           {email}
         </span>
         <form action={signOutAction}>
           <button
             type="submit"
             title="Log out"
-            className="flex h-7 w-7 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-slate-800 hover:text-orange-400"
+            className="flex h-7 w-7 items-center justify-center rounded-md text-sky-100 transition-colors hover:bg-white/10 hover:text-white"
           >
             <LogOut className="h-4 w-4" />
           </button>
@@ -73,7 +73,7 @@ export function AdminShell({
   return (
     <div className="flex min-h-screen">
       <BrandBackdrop variant="subtle" />
-      <aside className="hidden w-60 shrink-0 border-r border-slate-800 bg-slate-900 lg:block">
+      <aside className="hidden w-60 shrink-0 bg-sky-500 lg:block">
         {sidebarInner}
       </aside>
 
@@ -90,7 +90,7 @@ export function AdminShell({
           onClick={() => setOpen(false)}
         />
         <aside
-          className={`absolute inset-y-0 left-0 w-64 border-r border-slate-800 bg-slate-900 shadow-xl transition-transform duration-200 ${
+          className={`absolute inset-y-0 left-0 w-64 bg-sky-500 shadow-xl transition-transform duration-200 ${
             open ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -98,7 +98,7 @@ export function AdminShell({
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="absolute right-2 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-md text-slate-400 hover:bg-slate-800 hover:text-white"
+            className="absolute right-2 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-md text-sky-100 hover:bg-white/10 hover:text-white"
           >
             <X className="h-4 w-4" />
           </button>
@@ -107,25 +107,23 @@ export function AdminShell({
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex h-14 items-center justify-between gap-3 border-b border-slate-200 bg-white px-4 sm:px-6">
+        <header className="flex h-14 items-center justify-between gap-3 bg-sky-500 px-4 text-white sm:px-6">
           <div className="flex min-w-0 items-center gap-2">
             <button
               type="button"
               onClick={() => setOpen(true)}
               aria-label="Open menu"
-              className="-ml-1 flex h-9 w-9 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 lg:hidden"
+              className="-ml-1 flex h-9 w-9 items-center justify-center rounded-md text-white hover:bg-white/10 lg:hidden"
             >
               <Menu className="h-5 w-5" />
             </button>
-            <span className="truncate text-sm font-medium text-slate-500">
+            <span className="truncate text-sm font-medium text-sky-50">
               Platform Admin
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <span className="hidden text-sm text-slate-500 sm:inline">
-              {email}
-            </span>
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
+            <span className="hidden text-sm text-sky-50 sm:inline">{email}</span>
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/20 text-xs font-semibold text-white">
               {userInitial}
             </span>
           </div>

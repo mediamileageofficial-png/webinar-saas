@@ -27,7 +27,7 @@ function FormShell({
       <button
         type="submit"
         disabled={pending}
-        className="w-fit rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
+        className="w-fit rounded-md bg-sky-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-sky-600 disabled:opacity-60"
       >
         {pending ? "Saving..." : "Save"}
       </button>
@@ -47,7 +47,7 @@ export function CashfreeCredentialsForm({ orgSlug }: { orgSlug: string }) {
         <select
           name="env"
           defaultValue="sandbox"
-          className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+          className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
         >
           <option value="sandbox">Sandbox</option>
           <option value="production">Production</option>

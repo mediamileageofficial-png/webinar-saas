@@ -49,7 +49,7 @@ export function CreateOrgForm() {
       <button
         type="submit"
         disabled={pending}
-        className="h-[38px] rounded-md bg-orange-500 px-3 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
+        className="h-[38px] rounded-md bg-sky-500 px-3 text-sm font-medium text-white hover:bg-sky-600 disabled:opacity-60"
       >
         {pending ? "Creating..." : "Create organization"}
       </button>

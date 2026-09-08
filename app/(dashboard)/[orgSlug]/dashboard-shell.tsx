@@ -51,14 +51,14 @@ export function DashboardShell({
   const sidebarInner = (
     <div className="flex h-full flex-col px-3 py-5">
       <div className="flex items-center gap-2.5 px-2">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-orange-500 text-sm font-bold text-white">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white text-sm font-bold text-sky-600">
           {orgInitial}
         </span>
         <span className="min-w-0">
           <span className="block truncate text-sm font-semibold tracking-tight text-white">
             {orgName}
           </span>
-          <span className="block text-xs text-slate-500">{roleLabel}</span>
+          <span className="block text-xs text-sky-100">{roleLabel}</span>
         </span>
       </div>
 
@@ -66,18 +66,18 @@ export function DashboardShell({
         <SidebarNav orgSlug={orgSlug} />
       </div>
 
-      <div className="mt-4 flex items-center gap-2.5 border-t border-slate-800 px-2 pt-4">
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-700 text-xs font-semibold text-slate-100">
+      <div className="mt-4 flex items-center gap-2.5 border-t border-white/20 px-2 pt-4">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-xs font-semibold text-white">
           {userInitial}
         </span>
-        <span className="block min-w-0 flex-1 truncate text-xs text-slate-300">
+        <span className="block min-w-0 flex-1 truncate text-xs text-sky-50">
           {email}
         </span>
         <form action={signOutAction}>
           <button
             type="submit"
             title="Log out"
-            className="flex h-7 w-7 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-slate-800 hover:text-orange-400"
+            className="flex h-7 w-7 items-center justify-center rounded-md text-sky-100 transition-colors hover:bg-white/10 hover:text-white"
           >
             <LogOut className="h-4 w-4" />
           </button>
@@ -90,7 +90,7 @@ export function DashboardShell({
     <div className="flex min-h-screen">
       <BrandBackdrop variant="subtle" />
       {/* Desktop sidebar — static */}
-      <aside className="hidden w-60 shrink-0 border-r border-slate-800 bg-slate-900 lg:block">
+      <aside className="hidden w-60 shrink-0 bg-sky-500 lg:block">
         {sidebarInner}
       </aside>
 
@@ -108,7 +108,7 @@ export function DashboardShell({
           onClick={() => setOpen(false)}
         />
         <aside
-          className={`absolute inset-y-0 left-0 w-64 border-r border-slate-800 bg-slate-900 shadow-xl transition-transform duration-200 ${
+          className={`absolute inset-y-0 left-0 w-64 bg-sky-500 shadow-xl transition-transform duration-200 ${
             open ? "translate-x-0" : "-translate-x-full"
           }`}
         >
@@ -116,7 +116,7 @@ export function DashboardShell({
             type="button"
             onClick={() => setOpen(false)}
             aria-label="Close menu"
-            className="absolute right-2 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-md text-slate-400 hover:bg-slate-800 hover:text-white"
+            className="absolute right-2 top-4 z-10 flex h-8 w-8 items-center justify-center rounded-md text-sky-100 hover:bg-white/10 hover:text-white"
           >
             <X className="h-4 w-4" />
           </button>
@@ -125,17 +125,17 @@ export function DashboardShell({
       </div>
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex h-14 items-center justify-between gap-3 border-b border-slate-200 bg-white px-4 sm:px-6">
+        <header className="flex h-14 items-center justify-between gap-3 bg-sky-500 px-4 text-white sm:px-6">
           <div className="flex min-w-0 items-center gap-2">
             <button
               type="button"
               onClick={() => setOpen(true)}
               aria-label="Open menu"
-              className="-ml-1 flex h-9 w-9 items-center justify-center rounded-md text-slate-600 hover:bg-slate-100 lg:hidden"
+              className="-ml-1 flex h-9 w-9 items-center justify-center rounded-md text-white hover:bg-white/10 lg:hidden"
             >
               <Menu className="h-5 w-5" />
             </button>
-            <span className="truncate text-sm font-medium text-slate-500">
+            <span className="truncate text-sm font-medium text-sky-50">
               {orgName}
             </span>
           </div>
@@ -152,25 +152,23 @@ export function DashboardShell({
               }}
               className="relative hidden md:block"
             >
-              <Search className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <Search className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-sky-100" />
               <input
                 value={q}
                 onChange={(e) => setQ(e.target.value)}
                 placeholder="Search registrations…"
-                className="w-56 rounded-md border border-slate-200 bg-slate-50 py-1.5 pl-8 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-orange-500"
+                className="w-56 rounded-md border border-white/30 bg-white/15 py-1.5 pl-8 pr-3 text-sm text-white placeholder:text-sky-100 focus:border-white/50 focus:bg-white/25 focus:outline-none focus:ring-1 focus:ring-white/40"
               />
             </form>
             <Link
               href={`/${orgSlug}/messages`}
               aria-label="Message activity"
-              className="flex h-9 w-9 items-center justify-center rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-700"
+              className="flex h-9 w-9 items-center justify-center rounded-md text-white hover:bg-white/10"
             >
               <Bell className="h-4 w-4" />
             </Link>
-            <span className="hidden text-sm text-slate-500 lg:inline">
-              {email}
-            </span>
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
+            <span className="hidden text-sm text-sky-50 lg:inline">{email}</span>
+            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/20 text-xs font-semibold text-white">
               {userInitial}
             </span>
           </div>

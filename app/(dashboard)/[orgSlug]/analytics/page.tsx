@@ -173,7 +173,7 @@ export default async function AnalyticsPage({
           <select
             name="webinarId"
             defaultValue={webinarId ?? ""}
-            className="w-64 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            className="w-64 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
           >
             <option value="">Select a webinar...</option>
             {webinars?.map((w) => (
@@ -185,7 +185,7 @@ export default async function AnalyticsPage({
         </div>
         <button
           type="submit"
-          className="rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600"
+          className="rounded-md bg-sky-500 px-3 py-2 text-sm font-medium text-white hover:bg-sky-600"
         >
           View
         </button>
@@ -225,7 +225,7 @@ export default async function AnalyticsPage({
           <select
             name="formId"
             defaultValue={formId ?? ""}
-            className="w-64 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+            className="w-64 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
           >
             <option value="">Select a form...</option>
             {forms?.map((f) => (
@@ -237,7 +237,7 @@ export default async function AnalyticsPage({
         </div>
         <button
           type="submit"
-          className="rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600"
+          className="rounded-md bg-sky-500 px-3 py-2 text-sm font-medium text-white hover:bg-sky-600"
         >
           View
         </button>

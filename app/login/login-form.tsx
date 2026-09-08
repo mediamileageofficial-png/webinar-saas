@@ -47,7 +47,7 @@ function LoginForm() {
           <button
             type="submit"
             disabled={pending}
-            className="mt-2 rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
+            className="mt-2 rounded-md bg-sky-500 px-3 py-2 text-sm font-medium text-white hover:bg-sky-600 disabled:opacity-60"
           >
             {pending ? "Logging in..." : "Log in"}
           </button>
@@ -55,7 +55,7 @@ function LoginForm() {
 
         <p className="mt-6 text-center text-sm text-slate-500">
           Don&apos;t have an account?{" "}
-          <Link href="/signup" className="font-medium text-orange-600 hover:text-orange-700">
+          <Link href="/signup" className="font-medium text-sky-600 hover:text-sky-700">
             Sign up
           </Link>
         </p>

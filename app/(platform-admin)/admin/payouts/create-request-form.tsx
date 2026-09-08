@@ -23,7 +23,7 @@ export function CreateRequestForm({
         <select
           name="organizationId"
           required
-          className="w-56 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+          className="w-56 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
         >
           <option value="">Select...</option>
           {organizations.map((o) => (
@@ -42,7 +42,7 @@ export function CreateRequestForm({
       <button
         type="submit"
         disabled={pending}
-        className="h-[38px] rounded-md bg-orange-500 px-3 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
+        className="h-[38px] rounded-md bg-sky-500 px-3 text-sm font-medium text-white hover:bg-sky-600 disabled:opacity-60"
       >
         {pending ? "Creating..." : "Create payout request"}
       </button>

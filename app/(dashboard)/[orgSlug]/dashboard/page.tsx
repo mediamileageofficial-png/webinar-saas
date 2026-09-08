@@ -22,7 +22,7 @@ import { EventsCard, type EventRow } from "./events-card";
 import { EmptyState } from "./empty-state";
 
 const TINTS: Record<string, string> = {
-  orange: "bg-orange-50 text-orange-600",
+  orange: "bg-sky-50 text-sky-600",
   navy: "bg-slate-100 text-slate-700",
   green: "bg-green-50 text-green-600",
   red: "bg-red-50 text-red-600",
@@ -48,7 +48,7 @@ function CardHeader({
       <h2 className="text-sm font-semibold text-slate-900">{title}</h2>
       <Link
         href={href}
-        className="inline-flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-orange-600"
+        className="inline-flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-sky-600"
       >
         {linkLabel}
         <ArrowRight className="h-3.5 w-3.5" />
@@ -279,7 +279,7 @@ export default async function DashboardPage({
                 <div className="min-w-0 flex-1">
                   <Link
                     href={`/${orgSlug}/webinars/${w.id}`}
-                    className="block truncate text-sm font-semibold text-slate-900 hover:text-orange-600"
+                    className="block truncate text-sm font-semibold text-slate-900 hover:text-sky-600"
                   >
                     {w.name}
                   </Link>

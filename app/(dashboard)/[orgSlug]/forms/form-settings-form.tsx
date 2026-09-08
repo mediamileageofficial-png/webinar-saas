@@ -65,7 +65,7 @@ export function FormSettingsForm({
           id="webinarId"
           name="webinarId"
           defaultValue={defaults?.webinarId ?? ""}
-          className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
+          className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
         >
           <option value="">None</option>
           {webinarOptions.map((w) => (
@@ -142,7 +142,7 @@ export function FormSettingsForm({
       <button
         type="submit"
         disabled={pending}
-        className="mt-2 w-fit rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
+        className="mt-2 w-fit rounded-md bg-sky-500 px-4 py-2 text-sm font-medium text-white hover:bg-sky-600 disabled:opacity-60"
       >
         {pending ? "Saving..." : submitLabel}
       </button>

@@ -61,7 +61,7 @@ export function SidebarNav({ orgSlug }: { orgSlug: string }) {
     <nav className="mt-2 flex flex-col gap-5">
       {NAV.map((group) => (
         <div key={group.heading}>
-          <p className="px-3 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+          <p className="px-3 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-sky-100">
             {group.heading}
           </p>
           <div className="flex flex-col gap-0.5">
@@ -77,18 +77,18 @@ export function SidebarNav({ orgSlug }: { orgSlug: string }) {
                   aria-current={active ? "page" : undefined}
                   className={`group relative flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors ${
                     active
-                      ? "bg-slate-800 font-medium text-white"
-                      : "text-slate-400 hover:bg-slate-800/60 hover:text-slate-100"
+                      ? "bg-white/15 font-medium text-white"
+                      : "text-sky-50 hover:bg-white/10 hover:text-white"
                   }`}
                 >
                   {active && (
-                    <span className="absolute inset-y-1.5 left-0 w-0.5 rounded-full bg-orange-500" />
+                    <span className="absolute inset-y-1.5 left-0 w-0.5 rounded-full bg-white" />
                   )}
                   <Icon
                     className={`h-4 w-4 shrink-0 ${
                       active
-                        ? "text-orange-400"
-                        : "text-slate-500 group-hover:text-slate-300"
+                        ? "text-white"
+                        : "text-sky-100 group-hover:text-white"
                     }`}
                   />
                   {item.label}

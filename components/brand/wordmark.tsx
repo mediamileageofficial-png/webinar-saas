@@ -13,7 +13,7 @@ export function Wordmark({
   return (
     <span className={`inline-flex select-none items-center gap-2 ${className}`}>
       <span
-        className={`flex shrink-0 items-center justify-center rounded-md bg-orange-500 font-bold text-white ${mark}`}
+        className={`flex shrink-0 items-center justify-center rounded-md bg-sky-500 font-bold text-white ${mark}`}
       >
         W
       </span>

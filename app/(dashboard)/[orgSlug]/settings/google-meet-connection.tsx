@@ -60,7 +60,7 @@ export function GoogleMeetConnection({
         ) : (
           <a
             href={`/api/integrations/google-meet/connect?orgSlug=${encodeURIComponent(orgSlug)}`}
-            className="inline-block rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600"
+            className="inline-block rounded-md bg-sky-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-sky-600"
           >
             Connect Google account
           </a>

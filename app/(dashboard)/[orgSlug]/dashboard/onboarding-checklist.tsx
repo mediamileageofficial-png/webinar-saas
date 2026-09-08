@@ -46,7 +46,7 @@ export function OnboardingChecklist({
                   setDismissed(true);
                 });
               }}
-              className="text-xs font-medium text-slate-500 transition-colors hover:text-orange-600 disabled:opacity-60"
+              className="text-xs font-medium text-slate-500 transition-colors hover:text-sky-600 disabled:opacity-60"
             >
               Dismiss
             </button>
@@ -56,7 +56,7 @@ export function OnboardingChecklist({
 
       <div className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
         <div
-          className="h-full rounded-full bg-orange-500 transition-all"
+          className="h-full rounded-full bg-sky-500 transition-all"
           style={{ width: `${pct}%` }}
         />
       </div>
@@ -78,7 +78,7 @@ export function OnboardingChecklist({
             ) : (
               <Link
                 href={item.href}
-                className="group flex flex-1 items-center justify-between font-medium text-slate-700 transition-colors hover:text-orange-600"
+                className="group flex flex-1 items-center justify-between font-medium text-slate-700 transition-colors hover:text-sky-600"
               >
                 {item.label}
                 <ArrowRight className="h-3.5 w-3.5 opacity-0 transition-opacity group-hover:opacity-100" />
