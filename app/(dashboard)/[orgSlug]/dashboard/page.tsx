@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
   Users,
@@ -8,12 +9,17 @@ import {
   UserCheck,
   UserX,
   Clock,
+  BarChart3,
+  PlayCircle,
+  ArrowRight,
   type LucideIcon,
 } from "lucide-react";
 import { getMembershipForOrgSlug } from "@/lib/auth/session";
 import { createClient } from "@/lib/supabase/server";
 import { getOnboardingChecklist } from "@/lib/onboarding/checklist";
 import { OnboardingChecklist } from "./onboarding-checklist";
+import { EventsCard, type EventRow } from "./events-card";
+import { EmptyState } from "./empty-state";
 
 const TINTS: Record<string, string> = {
   orange: "bg-orange-50 text-orange-600",
@@ -28,6 +34,29 @@ function startOfTodayIso(): string {
   return d.toISOString();
 }
 
+function CardHeader({
+  title,
+  href,
+  linkLabel,
+}: {
+  title: string;
+  href: string;
+  linkLabel: string;
+}) {
+  return (
+    <div className="flex items-center justify-between border-b border-slate-200 px-5 py-3">
+      <h2 className="text-sm font-semibold text-slate-900">{title}</h2>
+      <Link
+        href={href}
+        className="inline-flex items-center gap-1 text-sm font-medium text-slate-600 hover:text-orange-600"
+      >
+        {linkLabel}
+        <ArrowRight className="h-3.5 w-3.5" />
+      </Link>
+    </div>
+  );
+}
+
 export default async function DashboardPage({
   params,
 }: {
@@ -39,9 +68,14 @@ export default async function DashboardPage({
 
   const supabase = await createClient();
   const orgId = membership.organizationId;
+  const todayStart = startOfTodayIso();
+  const canWrite = ["organization_owner", "organization_admin", "staff"].includes(
+    membership.role
+  );
 
   const [
     orgSettingsRes,
+    webinarsRes,
     totalRegistrationsRes,
     todayRegistrationsRes,
     activeWebinarsRes,
@@ -52,6 +86,11 @@ export default async function DashboardPage({
   ] = await Promise.all([
     supabase.from("organizations").select("settings").eq("id", orgId).maybeSingle(),
     supabase
+      .from("webinars")
+      .select("id, name, status, start_time, end_time, event_date, speaker_name, recording_url")
+      .eq("organization_id", orgId)
+      .order("start_time", { ascending: false }),
+    supabase
       .from("registrations")
       .select("*", { count: "exact", head: true })
       .eq("organization_id", orgId),
@@ -59,7 +98,7 @@ export default async function DashboardPage({
       .from("registrations")
       .select("*", { count: "exact", head: true })
       .eq("organization_id", orgId)
-      .gte("created_at", startOfTodayIso()),
+      .gte("created_at", todayStart),
     supabase
       .from("webinars")
       .select("*", { count: "exact", head: true })
@@ -76,9 +115,6 @@ export default async function DashboardPage({
       .eq("organization_id", orgId)
       .in("payment_status", ["pending", "initiated"]),
     supabase.from("payments").select("amount").eq("organization_id", orgId).eq("status", "success"),
-    // Attendance rate needs BOTH attended and not-attended rows to compute a
-    // meaningful percentage - fetching the boolean column directly rather
-    // than two separate counts keeps this to one query.
     supabase.from("attendance").select("attended").eq("organization_id", orgId),
   ]);
 
@@ -93,13 +129,32 @@ export default async function DashboardPage({
       ? `${((attendedCount / attendanceRows.length) * 100).toFixed(0)}%`
       : "—";
 
+  const totalRegistrations = totalRegistrationsRes.count ?? 0;
+
+  const webinars = webinarsRes.data ?? [];
+  const todayDate = new Date().toISOString().slice(0, 10);
+  const toRow = (w: (typeof webinars)[number]): EventRow => ({
+    id: w.id,
+    name: w.name,
+    status: w.status,
+    startISO: w.start_time,
+    endISO: w.end_time,
+    speaker: w.speaker_name,
+  });
+  const upcoming = webinars
+    .filter((w) => w.event_date >= todayDate && w.status !== "cancelled")
+    .sort((a, b) => a.start_time.localeCompare(b.start_time))
+    .map(toRow);
+  const past = webinars.filter((w) => w.event_date < todayDate).map(toRow);
+  const recordings = webinars.filter((w) => w.recording_url);
+
   const cards: {
     label: string;
     value: string | number;
     icon: LucideIcon;
     tint: keyof typeof TINTS;
   }[] = [
-    { label: "Total registrations", value: totalRegistrationsRes.count ?? 0, icon: Users, tint: "orange" },
+    { label: "Total registrations", value: totalRegistrations, icon: Users, tint: "orange" },
     { label: "Today's registrations", value: todayRegistrationsRes.count ?? 0, icon: CalendarPlus, tint: "navy" },
     { label: "Active webinars", value: activeWebinarsRes.count ?? 0, icon: Video, tint: "navy" },
     { label: "Paid registrations", value: paidRegistrationsRes.count ?? 0, icon: CreditCard, tint: "green" },
@@ -118,49 +173,113 @@ export default async function DashboardPage({
   const showChecklist = !onboardingDismissed && checklistItems.length > 0;
 
   return (
-    <div className="mx-auto max-w-6xl">
-      <div className="flex flex-wrap items-end justify-between gap-2">
-        <div>
-          <h1 className="text-xl font-semibold tracking-tight text-slate-900">
-            Dashboard
-          </h1>
-          <p className="mt-1 text-sm text-slate-500">
-            Signed in as{" "}
-            <span className="font-medium text-slate-700">{membership.role}</span>{" "}
-            of this organization.
-          </p>
-        </div>
+    <div className="mx-auto flex max-w-6xl flex-col gap-6">
+      <div>
+        <h1 className="text-xl font-semibold tracking-tight text-slate-900">
+          Dashboard
+        </h1>
+        <p className="mt-1 text-sm text-slate-500">
+          Signed in as{" "}
+          <span className="font-medium text-slate-700">{membership.role}</span> of
+          this organization.
+        </p>
       </div>
 
       {showChecklist && (
-        <div className="mt-6">
-          <OnboardingChecklist orgSlug={orgSlug} items={checklistItems} />
-        </div>
+        <OnboardingChecklist orgSlug={orgSlug} items={checklistItems} />
       )}
 
-      <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        {cards.map((card) => {
-          const Icon = card.icon;
-          return (
-            <div
-              key={card.label}
-              className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md sm:p-5"
-            >
-              <div
-                className={`flex h-9 w-9 items-center justify-center rounded-lg ${TINTS[card.tint]}`}
-              >
-                <Icon className="h-5 w-5" />
+      <EventsCard
+        orgSlug={orgSlug}
+        upcoming={upcoming}
+        past={past}
+        canWrite={canWrite}
+      />
+
+      <section className="rounded-xl border border-slate-200 bg-white shadow-sm">
+        <CardHeader
+          title="Analytics"
+          href={`/${orgSlug}/analytics`}
+          linkLabel="View details"
+        />
+        {totalRegistrations === 0 ? (
+          <EmptyState
+            icon={BarChart3}
+            title="No analytics to display"
+            description="You don't have any registrations yet. Publish a form and share it to start collecting data."
+            action={{ label: "Go to forms", href: `/${orgSlug}/forms` }}
+          />
+        ) : (
+          <div className="grid grid-cols-2 gap-px overflow-hidden rounded-b-xl bg-slate-100 lg:grid-cols-4">
+            {cards.map((card) => {
+              const Icon = card.icon;
+              return (
+                <div key={card.label} className="bg-white p-4 sm:p-5">
+                  <div
+                    className={`flex h-9 w-9 items-center justify-center rounded-lg ${TINTS[card.tint]}`}
+                  >
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <p className="mt-3 text-xs font-medium uppercase tracking-wide text-slate-400">
+                    {card.label}
+                  </p>
+                  <p className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
+                    {card.value}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
+
+      <section className="rounded-xl border border-slate-200 bg-white shadow-sm">
+        <CardHeader
+          title="Recordings"
+          href={`/${orgSlug}/webinars`}
+          linkLabel="View all"
+        />
+        {recordings.length === 0 ? (
+          <EmptyState
+            icon={PlayCircle}
+            title="No recordings yet"
+            description="Add a recording link to a completed webinar and it will be listed here for your team."
+          />
+        ) : (
+          <div className="divide-y divide-slate-100">
+            {recordings.map((w) => (
+              <div key={w.id} className="flex items-center gap-4 px-5 py-4">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-500">
+                  <PlayCircle className="h-5 w-5" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <Link
+                    href={`/${orgSlug}/webinars/${w.id}`}
+                    className="block truncate text-sm font-semibold text-slate-900 hover:text-orange-600"
+                  >
+                    {w.name}
+                  </Link>
+                  <p className="text-xs text-slate-500">
+                    {new Date(w.start_time).toLocaleDateString(undefined, {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric",
+                    })}
+                  </p>
+                </div>
+                <a
+                  href={w.recording_url ?? "#"}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-md border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-700 hover:bg-slate-50"
+                >
+                  Watch
+                </a>
               </div>
-              <p className="mt-3 text-xs font-medium uppercase tracking-wide text-slate-400">
-                {card.label}
-              </p>
-              <p className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
-                {card.value}
-              </p>
-            </div>
-          );
-        })}
-      </div>
+            ))}
+          </div>
+        )}
+      </section>
     </div>
   );
 }

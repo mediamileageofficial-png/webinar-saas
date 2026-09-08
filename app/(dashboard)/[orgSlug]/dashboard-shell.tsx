@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
-import { LogOut, Menu, X } from "lucide-react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { Bell, LogOut, Menu, Search, X } from "lucide-react";
 import { signOutAction } from "@/lib/auth/actions";
 import { SidebarNav } from "./sidebar-nav";
 
@@ -22,7 +23,9 @@ export function DashboardShell({
   children: React.ReactNode;
 }) {
   const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
   const pathname = usePathname();
+  const router = useRouter();
 
   // Close the mobile drawer on navigation.
   useEffect(() => {
@@ -132,8 +135,35 @@ export function DashboardShell({
               {orgSlug}
             </span>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="hidden text-sm text-slate-500 sm:inline">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const term = q.trim();
+                router.push(
+                  `/${orgSlug}/registrations${
+                    term ? `?q=${encodeURIComponent(term)}` : ""
+                  }`
+                );
+              }}
+              className="relative hidden md:block"
+            >
+              <Search className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
+              <input
+                value={q}
+                onChange={(e) => setQ(e.target.value)}
+                placeholder="Search registrations…"
+                className="w-56 rounded-md border border-slate-200 bg-slate-50 py-1.5 pl-8 pr-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-orange-500 focus:bg-white focus:outline-none focus:ring-1 focus:ring-orange-500"
+              />
+            </form>
+            <Link
+              href={`/${orgSlug}/messages`}
+              aria-label="Message activity"
+              className="flex h-9 w-9 items-center justify-center rounded-md text-slate-500 hover:bg-slate-100 hover:text-slate-700"
+            >
+              <Bell className="h-4 w-4" />
+            </Link>
+            <span className="hidden text-sm text-slate-500 lg:inline">
               {email}
             </span>
             <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-slate-900 text-xs font-semibold text-white">
