@@ -60,7 +60,7 @@ export default function PaymentReturnPage() {
           <p className="text-sm text-slate-500">Confirming your payment...</p>
         )}
         {state === "confirmed" && (
-          <p className="text-sm text-emerald-700">
+          <p className="text-sm text-green-700">
             Payment successful - you&apos;re registered!
           </p>
         )}

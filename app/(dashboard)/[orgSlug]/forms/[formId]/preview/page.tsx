@@ -64,7 +64,7 @@ export default async function FormPreviewPage({
         <button
           type="button"
           disabled
-          className="mt-6 w-full rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white opacity-60"
+          className="mt-6 w-full rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white opacity-60"
         >
           {form.submit_button_text}
         </button>

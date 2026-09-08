@@ -1,28 +1,49 @@
 @import "tailwindcss";
 
+/*
+ * Premium SaaS theme — deep navy (#0F172A) + orange (#F97316) accent.
+ * Neutrals map onto Tailwind's slate scale, which already matches the spec:
+ *   navy #0F172A = slate-900   slate #334155 = slate-700
+ *   border #E2E8F0 = slate-200 secondary #64748B = slate-500
+ *   muted #94A3B8 = slate-400  background #F8FAFC = slate-50
+ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8fafc;
+  --foreground: #0f172a;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
-    Helvetica, Arial, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-md bg-orange-500 px-3 py-2
+      text-sm font-medium text-white transition-colors hover:bg-orange-600
+      focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2
+      disabled:opacity-60;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-md border border-slate-200
+      bg-white px-3 py-2 text-sm font-medium text-slate-900 transition-colors
+      hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-300
+      disabled:opacity-60;
+  }
+  .card {
+    @apply rounded-lg border border-slate-200 bg-white shadow-sm;
+  }
 }

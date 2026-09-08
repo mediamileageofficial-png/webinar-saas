@@ -34,7 +34,7 @@ export function SyncAttendanceButton({
         {pending ? "Syncing..." : "Sync attendance now"}
       </button>
       {message && (
-        <p className={`text-sm ${message.isError ? "text-red-600" : "text-emerald-700"}`}>
+        <p className={`text-sm ${message.isError ? "text-red-600" : "text-green-700"}`}>
           {message.text}
         </p>
       )}

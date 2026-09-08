@@ -110,9 +110,16 @@ export default async function DashboardPage({
 
       <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
         {cards.map((card) => (
-          <div key={card.label} className="rounded-lg border border-slate-200 bg-white p-4">
-            <p className="text-xs font-medium uppercase text-slate-400">{card.label}</p>
-            <p className="mt-1 text-2xl font-semibold text-slate-900">{card.value}</p>
+          <div
+            key={card.label}
+            className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
+          >
+            <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
+              {card.label}
+            </p>
+            <p className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
+              {card.value}
+            </p>
           </div>
         ))}
       </div>

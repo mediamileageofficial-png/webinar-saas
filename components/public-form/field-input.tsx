@@ -29,7 +29,7 @@ export function FieldInput({
   const stringValue = typeof value === "string" ? value : "";
   const arrayValue = Array.isArray(value) ? value : [];
   const inputClass =
-    "rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500";
+    "rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500";
 
   return (
     <div className="flex flex-col gap-1.5">

@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-// Using the system font stack (defined in globals.css) instead of next/font/google
-// so the build doesn't depend on fetching fonts.googleapis.com at build time.
+// Inter, self-hosted by next/font at build time (no runtime request to
+// fonts.googleapis.com). globals.css keeps a full system-font fallback stack
+// so the UI still renders correctly if the font fails to load.
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-inter",
+});
 
 export const metadata: Metadata = {
   title: "Webinar SaaS",
@@ -12,7 +19,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className="h-full antialiased">
+    <html lang="en" className={`h-full antialiased ${inter.variable}`}>
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );

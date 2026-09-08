@@ -104,7 +104,7 @@ export function PublicRegistrationForm({
       <div
         className={
           status === "success"
-            ? "rounded-md bg-emerald-50 p-4 text-sm text-emerald-800"
+            ? "rounded-md bg-green-50 p-4 text-sm text-green-800"
             : "rounded-md bg-amber-50 p-4 text-sm text-amber-800"
         }
         role="status"
@@ -148,7 +148,7 @@ export function PublicRegistrationForm({
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="mt-2 rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-60"
+        className="mt-2 rounded-md bg-orange-500 px-4 py-2 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
       >
         {status === "submitting" ? "Submitting..." : submitButtonText}
       </button>

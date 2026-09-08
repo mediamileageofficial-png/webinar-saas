@@ -27,7 +27,7 @@ export function MeetingProviderForm({
         <select
           name="meetingProvider"
           defaultValue={currentProvider ?? ""}
-          className="w-48 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+          className="w-48 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
         >
           <option value="">None (manual attendance)</option>
           <option value="zoom">Zoom</option>
@@ -46,12 +46,12 @@ export function MeetingProviderForm({
       <button
         type="submit"
         disabled={pending}
-        className="h-[38px] rounded-md bg-slate-900 px-3 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-60"
+        className="h-[38px] rounded-md bg-orange-500 px-3 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
       >
         {pending ? "Saving..." : "Save"}
       </button>
       {state.error && <p className="w-full text-sm text-red-600">{state.error}</p>}
-      {state.success && <p className="w-full text-sm text-emerald-700">{state.success}</p>}
+      {state.success && <p className="w-full text-sm text-green-700">{state.success}</p>}
     </form>
   );
 }

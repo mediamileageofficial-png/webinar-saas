@@ -3,7 +3,7 @@ import { getMembershipForOrgSlug } from "@/lib/auth/session";
 import { createClient } from "@/lib/supabase/server";
 
 const STATUS_STYLES: Record<string, string> = {
-  success: "bg-emerald-50 text-emerald-700",
+  success: "bg-green-50 text-green-700",
   pending: "bg-amber-50 text-amber-700",
   initiated: "bg-amber-50 text-amber-700",
   failed: "bg-red-50 text-red-600",
@@ -63,7 +63,7 @@ export default async function PaymentsPage({
           <select
             name="status"
             defaultValue={status ?? ""}
-            className="w-48 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            className="w-48 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
           >
             <option value="">Any</option>
             <option value="success">Success</option>
@@ -75,7 +75,7 @@ export default async function PaymentsPage({
         </div>
         <button
           type="submit"
-          className="rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-800"
+          className="rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600"
         >
           Filter
         </button>

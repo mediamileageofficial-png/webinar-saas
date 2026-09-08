@@ -33,7 +33,7 @@ export default async function FormsPage({
         {canWrite && (
           <Link
             href={`/${orgSlug}/forms/new`}
-            className="rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-800"
+            className="rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600"
           >
             New form
           </Link>
@@ -85,7 +85,7 @@ export default async function FormsPage({
                   <span
                     className={
                       form.is_published
-                        ? "rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700"
+                        ? "rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700"
                         : "rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600"
                     }
                   >

@@ -6,12 +6,12 @@ import { AttendanceButtons } from "./attendance-buttons";
 
 const STATUS_STYLES: Record<string, string> = {
   pending: "bg-amber-50 text-amber-700",
-  confirmed: "bg-emerald-50 text-emerald-700",
+  confirmed: "bg-green-50 text-green-700",
   cancelled: "bg-red-50 text-red-600",
 };
 
 const PAYMENT_STYLES: Record<string, string> = {
-  success: "bg-emerald-50 text-emerald-700",
+  success: "bg-green-50 text-green-700",
   pending: "bg-amber-50 text-amber-700",
   failed: "bg-red-50 text-red-600",
   not_applicable: "bg-slate-100 text-slate-500",
@@ -91,7 +91,7 @@ export default async function RegistrationsPage({
             name="q"
             defaultValue={q}
             placeholder="Name, email, or mobile"
-            className="w-56 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            className="w-56 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
           />
         </div>
         <div className="flex flex-col gap-1.5">
@@ -99,7 +99,7 @@ export default async function RegistrationsPage({
           <select
             name="webinarId"
             defaultValue={webinarId ?? ""}
-            className="w-48 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            className="w-48 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
           >
             <option value="">All webinars</option>
             {webinarOptions?.map((w) => (
@@ -114,7 +114,7 @@ export default async function RegistrationsPage({
           <select
             name="paymentStatus"
             defaultValue={paymentStatus ?? ""}
-            className="w-40 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            className="w-40 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
           >
             <option value="">Any</option>
             <option value="success">Success</option>
@@ -125,7 +125,7 @@ export default async function RegistrationsPage({
         </div>
         <button
           type="submit"
-          className="rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-800"
+          className="rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600"
         >
           Filter
         </button>

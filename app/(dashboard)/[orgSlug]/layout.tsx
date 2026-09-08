@@ -1,21 +1,7 @@
 import { notFound, redirect } from "next/navigation";
-import Link from "next/link";
 import { getServerUser, getMembershipForOrgSlug } from "@/lib/auth/session";
 import { signOutAction } from "@/lib/auth/actions";
-
-const NAV_ITEMS = [
-  { label: "Dashboard", href: "dashboard" },
-  { label: "Webinars", href: "webinars" },
-  { label: "Forms", href: "forms" },
-  { label: "Registrations", href: "registrations" },
-  { label: "Payments", href: "payments" },
-  { label: "Payouts", href: "payouts" },
-  { label: "Automation", href: "automation" },
-  { label: "Messages", href: "messages" },
-  { label: "Analytics", href: "analytics" },
-  { label: "Integrations", href: "integrations" },
-  { label: "Settings", href: "settings" },
-];
+import { SidebarNav } from "./sidebar-nav";
 
 export default async function OrgDashboardLayout({
   children,
@@ -41,32 +27,25 @@ export default async function OrgDashboardLayout({
 
   return (
     <div className="flex min-h-screen bg-slate-50">
-      <aside className="w-56 shrink-0 border-r border-slate-200 bg-white px-3 py-6">
-        <div className="px-3 text-sm font-semibold text-slate-900">
-          {orgSlug}
+      <aside className="w-56 shrink-0 border-r border-slate-800 bg-slate-900 px-3 py-6">
+        <div className="flex items-center gap-2 px-3">
+          <span className="h-2 w-2 shrink-0 rounded-full bg-orange-500" />
+          <span className="truncate text-sm font-semibold tracking-tight text-white">
+            {orgSlug}
+          </span>
         </div>
-        <nav className="mt-6 flex flex-col gap-1">
-          {NAV_ITEMS.map((item) => (
-            <Link
-              key={item.href}
-              href={`/${orgSlug}/${item.href}`}
-              className="rounded-md px-3 py-2 text-sm text-slate-600 hover:bg-slate-100 hover:text-slate-900"
-            >
-              {item.label}
-            </Link>
-          ))}
-        </nav>
+        <SidebarNav orgSlug={orgSlug} />
       </aside>
 
       <div className="flex flex-1 flex-col">
-        <header className="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-3">
-          <span className="text-sm text-slate-500">
-            Signed in as {user.email}
+        <header className="flex items-center justify-between border-b border-slate-800 bg-slate-900 px-6 py-3">
+          <span className="text-sm text-slate-400">
+            Signed in as <span className="text-slate-200">{user.email}</span>
           </span>
           <form action={signOutAction}>
             <button
               type="submit"
-              className="text-sm font-medium text-slate-600 hover:text-slate-900"
+              className="text-sm font-medium text-slate-300 transition-colors hover:text-orange-400"
             >
               Log out
             </button>

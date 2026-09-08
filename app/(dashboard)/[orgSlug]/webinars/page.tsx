@@ -6,8 +6,8 @@ import { DeleteWebinarButton } from "./delete-webinar-button";
 
 const STATUS_STYLES: Record<string, string> = {
   draft: "bg-slate-100 text-slate-600",
-  published: "bg-blue-50 text-blue-700",
-  registration_open: "bg-emerald-50 text-emerald-700",
+  published: "bg-slate-100 text-slate-700",
+  registration_open: "bg-green-50 text-green-700",
   registration_closed: "bg-amber-50 text-amber-700",
   completed: "bg-slate-100 text-slate-500",
   cancelled: "bg-red-50 text-red-600",
@@ -42,7 +42,7 @@ export default async function WebinarsPage({
         {canWrite && (
           <Link
             href={`/${orgSlug}/webinars/new`}
-            className="rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-800"
+            className="rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600"
           >
             New webinar
           </Link>

@@ -53,7 +53,7 @@ export default async function SettingsPage({
       )}
 
       {googleMeetConnected && (
-        <p className="mt-2 rounded-md bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+        <p className="mt-2 rounded-md bg-green-50 px-3 py-2 text-sm text-green-800">
           Google Meet connected.
         </p>
       )}

@@ -37,8 +37,8 @@ export function AttendanceButtons({
           onClick={() => mark(true)}
           className={
             currentlyAttended === true
-              ? "rounded-md bg-emerald-600 px-2.5 py-1 text-xs font-medium text-white"
-              : "rounded-md border border-emerald-200 px-2.5 py-1 text-xs font-medium text-emerald-700 hover:bg-emerald-50 disabled:opacity-60"
+              ? "rounded-md bg-green-600 px-2.5 py-1 text-xs font-medium text-white"
+              : "rounded-md border border-green-200 px-2.5 py-1 text-xs font-medium text-green-700 hover:bg-green-50 disabled:opacity-60"
           }
         >
           Attended

@@ -42,7 +42,7 @@ export function RequestRowActions({
               type="button"
               disabled={pending}
               onClick={() => run(() => approvePayoutRequestAction(requestId))}
-              className="text-xs font-medium text-emerald-700 hover:underline disabled:opacity-60"
+              className="text-xs font-medium text-green-700 hover:underline disabled:opacity-60"
             >
               Approve
             </button>
@@ -73,7 +73,7 @@ export function RequestRowActions({
         )}
       </div>
       {error && <span className="max-w-xs text-right text-xs text-red-600">{error}</span>}
-      {success && <span className="max-w-xs text-right text-xs text-emerald-700">{success}</span>}
+      {success && <span className="max-w-xs text-right text-xs text-green-700">{success}</span>}
     </div>
   );
 }

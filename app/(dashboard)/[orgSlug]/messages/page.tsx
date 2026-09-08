@@ -9,7 +9,7 @@ import {
 import { TemplateEditor, type ExistingTemplate } from "./template-editor";
 
 const STATUS_STYLES: Record<string, string> = {
-  sent: "bg-emerald-50 text-emerald-700",
+  sent: "bg-green-50 text-green-700",
   failed: "bg-red-50 text-red-600",
   queued: "bg-slate-100 text-slate-600",
 };

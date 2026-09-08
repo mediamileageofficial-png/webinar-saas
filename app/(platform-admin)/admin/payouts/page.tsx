@@ -6,16 +6,16 @@ import { RequestRowActions } from "./request-row-actions";
 
 const REQUEST_STATUS_STYLES: Record<string, string> = {
   pending: "bg-slate-100 text-slate-600",
-  approved: "bg-blue-50 text-blue-700",
+  approved: "bg-slate-100 text-slate-700",
   processing: "bg-amber-50 text-amber-700",
-  success: "bg-emerald-50 text-emerald-700",
+  success: "bg-green-50 text-green-700",
   failed: "bg-red-50 text-red-600",
   rejected: "bg-red-50 text-red-600",
   reversed: "bg-red-50 text-red-600",
 };
 
 const VERIFICATION_STYLES: Record<string, string> = {
-  VERIFIED: "text-emerald-700",
+  VERIFIED: "text-green-700",
   NOT_VERIFIED: "text-slate-400",
   PENDING: "text-amber-600",
   NAME_MISMATCH: "text-amber-600",

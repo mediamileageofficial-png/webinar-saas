@@ -20,7 +20,7 @@ export function OnboardingChecklist({
   if (dismissed) return null;
 
   return (
-    <div className="mb-6 rounded-lg border border-slate-200 bg-white p-4">
+    <div className="mb-6 rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
       <div className="flex items-center justify-between">
         <div>
           <h2 className="text-sm font-semibold text-slate-900">
@@ -28,7 +28,7 @@ export function OnboardingChecklist({
           </h2>
           <div className="mt-2 h-1.5 w-48 overflow-hidden rounded-full bg-slate-100">
             <div
-              className="h-full rounded-full bg-emerald-500 transition-all"
+              className="h-full rounded-full bg-green-500 transition-all"
               style={{ width: `${(completedCount / items.length) * 100}%` }}
             />
           </div>
@@ -56,7 +56,7 @@ export function OnboardingChecklist({
             <span
               className={
                 item.complete
-                  ? "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-xs text-white"
+                  ? "flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green-500 text-xs text-white"
                   : "flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-slate-300 text-xs text-transparent"
               }
             >
@@ -65,7 +65,10 @@ export function OnboardingChecklist({
             {item.complete ? (
               <span className="text-slate-400 line-through">{item.label}</span>
             ) : (
-              <Link href={item.href} className="text-slate-700 hover:underline">
+              <Link
+                href={item.href}
+                className="font-medium text-slate-700 transition-colors hover:text-orange-600"
+              >
                 {item.label}
               </Link>
             )}

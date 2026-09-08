@@ -64,7 +64,7 @@ export default function OnboardingPage() {
           <button
             type="submit"
             disabled={pending}
-            className="mt-2 rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-60"
+            className="mt-2 rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
           >
             {pending ? "Creating..." : "Create organization"}
           </button>

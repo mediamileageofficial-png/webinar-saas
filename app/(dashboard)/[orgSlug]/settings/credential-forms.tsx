@@ -23,11 +23,11 @@ function FormShell({
     <form action={formAction} className="flex flex-col gap-3">
       {children}
       {state.error && <p className="text-sm text-red-600">{state.error}</p>}
-      {state.success && <p className="text-sm text-emerald-700">{state.success}</p>}
+      {state.success && <p className="text-sm text-green-700">{state.success}</p>}
       <button
         type="submit"
         disabled={pending}
-        className="w-fit rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-60"
+        className="w-fit rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
       >
         {pending ? "Saving..." : "Save"}
       </button>
@@ -47,7 +47,7 @@ export function CashfreeCredentialsForm({ orgSlug }: { orgSlug: string }) {
         <select
           name="env"
           defaultValue="sandbox"
-          className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+          className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
         >
           <option value="sandbox">Sandbox</option>
           <option value="production">Production</option>

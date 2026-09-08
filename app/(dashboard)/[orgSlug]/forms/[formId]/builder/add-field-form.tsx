@@ -66,7 +66,7 @@ export function AddFieldForm({
               setFieldType(next);
               if (!keyTouched) setFieldKey(next);
             }}
-            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
           >
             {fieldTypes.map((ft) => (
               <option key={ft} value={ft}>
@@ -118,7 +118,7 @@ export function AddFieldForm({
       <button
         type="submit"
         disabled={pending}
-        className="w-fit rounded-md bg-slate-900 px-3 py-2 text-sm font-medium text-white hover:bg-slate-800 disabled:opacity-60"
+        className="w-fit rounded-md bg-orange-500 px-3 py-2 text-sm font-medium text-white hover:bg-orange-600 disabled:opacity-60"
       >
         {pending ? "Adding..." : "Add field"}
       </button>

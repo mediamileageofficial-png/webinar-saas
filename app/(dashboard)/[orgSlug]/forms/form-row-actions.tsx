@@ -53,7 +53,7 @@ export function FormRowActions({
             type="button"
             disabled={pending}
             onClick={() => run(() => publishFormAction(orgSlug, formId))}
-            className="text-xs font-medium text-emerald-700 hover:underline disabled:opacity-60"
+            className="text-xs font-medium text-green-700 hover:underline disabled:opacity-60"
           >
             Publish
           </button>

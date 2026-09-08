@@ -57,7 +57,7 @@ export default async function AdminOrganizationsPage() {
                   <span
                     className={
                       org.status === "active"
-                        ? "rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700"
+                        ? "rounded-full bg-green-50 px-2 py-0.5 text-xs font-medium text-green-700"
                         : "rounded-full bg-red-50 px-2 py-0.5 text-xs font-medium text-red-600"
                     }
                   >

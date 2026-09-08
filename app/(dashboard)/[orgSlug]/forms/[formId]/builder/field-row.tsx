@@ -67,7 +67,7 @@ export function FieldRow({
               <select
                 name="fieldType"
                 defaultValue={field.field_type}
-                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+                className="rounded-md border border-slate-300 px-3 py-2 text-sm text-slate-900 focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
               >
                 {fieldTypes.map((ft) => (
                   <option key={ft} value={ft}>
@@ -102,7 +102,7 @@ export function FieldRow({
             <button
               type="submit"
               disabled={updatePending}
-              className="rounded-md bg-slate-900 px-3 py-1.5 text-xs font-medium text-white hover:bg-slate-800 disabled:opacity-60"
+              className="rounded-md bg-orange-500 px-3 py-1.5 text-xs font-medium text-white hover:bg-orange-600 disabled:opacity-60"
             >
               {updatePending ? "Saving..." : "Save"}
             </button>

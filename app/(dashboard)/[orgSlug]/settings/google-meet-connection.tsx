@@ -30,7 +30,7 @@ export function GoogleMeetConnection({
           </p>
         </div>
         {connected ? (
-          <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-700">
+          <span className="rounded-full bg-green-50 px-2.5 py-1 text-xs font-medium text-green-700">
             Connected{updatedAt ? ` - ${new Date(updatedAt).toLocaleDateString()}` : ""}
           </span>
         ) : (
@@ -60,7 +60,7 @@ export function GoogleMeetConnection({
         ) : (
           <a
             href={`/api/integrations/google-meet/connect?orgSlug=${encodeURIComponent(orgSlug)}`}
-            className="inline-block rounded-md bg-slate-900 px-3 py-1.5 text-sm font-medium text-white hover:bg-slate-800"
+            className="inline-block rounded-md bg-orange-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-orange-600"
           >
             Connect Google account
           </a>
