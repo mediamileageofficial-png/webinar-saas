@@ -1,8 +1,26 @@
 import { notFound } from "next/navigation";
+import {
+  Users,
+  CalendarPlus,
+  Video,
+  CreditCard,
+  IndianRupee,
+  UserCheck,
+  UserX,
+  Clock,
+  type LucideIcon,
+} from "lucide-react";
 import { getMembershipForOrgSlug } from "@/lib/auth/session";
 import { createClient } from "@/lib/supabase/server";
 import { getOnboardingChecklist } from "@/lib/onboarding/checklist";
 import { OnboardingChecklist } from "./onboarding-checklist";
+
+const TINTS: Record<string, string> = {
+  orange: "bg-orange-50 text-orange-600",
+  navy: "bg-slate-100 text-slate-700",
+  green: "bg-green-50 text-green-600",
+  red: "bg-red-50 text-red-600",
+};
 
 function startOfTodayIso(): string {
   const d = new Date();
@@ -75,15 +93,20 @@ export default async function DashboardPage({
       ? `${((attendedCount / attendanceRows.length) * 100).toFixed(0)}%`
       : "—";
 
-  const cards = [
-    { label: "Total registrations", value: totalRegistrationsRes.count ?? 0 },
-    { label: "Today's registrations", value: todayRegistrationsRes.count ?? 0 },
-    { label: "Active webinars", value: activeWebinarsRes.count ?? 0 },
-    { label: "Paid registrations", value: paidRegistrationsRes.count ?? 0 },
-    { label: "Revenue", value: `₹${revenue.toLocaleString("en-IN")}` },
-    { label: "Attendance rate", value: attendanceRate },
-    { label: "No-show count", value: noShowCount },
-    { label: "Pending payments", value: pendingPaymentsRes.count ?? 0 },
+  const cards: {
+    label: string;
+    value: string | number;
+    icon: LucideIcon;
+    tint: keyof typeof TINTS;
+  }[] = [
+    { label: "Total registrations", value: totalRegistrationsRes.count ?? 0, icon: Users, tint: "orange" },
+    { label: "Today's registrations", value: todayRegistrationsRes.count ?? 0, icon: CalendarPlus, tint: "navy" },
+    { label: "Active webinars", value: activeWebinarsRes.count ?? 0, icon: Video, tint: "navy" },
+    { label: "Paid registrations", value: paidRegistrationsRes.count ?? 0, icon: CreditCard, tint: "green" },
+    { label: "Revenue", value: `₹${revenue.toLocaleString("en-IN")}`, icon: IndianRupee, tint: "orange" },
+    { label: "Attendance rate", value: attendanceRate, icon: UserCheck, tint: "green" },
+    { label: "No-show count", value: noShowCount, icon: UserX, tint: "red" },
+    { label: "Pending payments", value: pendingPaymentsRes.count ?? 0, icon: Clock, tint: "red" },
   ];
 
   const onboardingDismissed = Boolean(
@@ -95,12 +118,19 @@ export default async function DashboardPage({
   const showChecklist = !onboardingDismissed && checklistItems.length > 0;
 
   return (
-    <div>
-      <h1 className="text-lg font-semibold text-slate-900">Dashboard</h1>
-      <p className="mt-1 text-sm text-slate-500">
-        Signed in as <span className="font-medium text-slate-700">{membership.role}</span> of
-        this organization.
-      </p>
+    <div className="mx-auto max-w-6xl">
+      <div className="flex flex-wrap items-end justify-between gap-2">
+        <div>
+          <h1 className="text-xl font-semibold tracking-tight text-slate-900">
+            Dashboard
+          </h1>
+          <p className="mt-1 text-sm text-slate-500">
+            Signed in as{" "}
+            <span className="font-medium text-slate-700">{membership.role}</span>{" "}
+            of this organization.
+          </p>
+        </div>
+      </div>
 
       {showChecklist && (
         <div className="mt-6">
@@ -108,20 +138,28 @@ export default async function DashboardPage({
         </div>
       )}
 
-      <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-        {cards.map((card) => (
-          <div
-            key={card.label}
-            className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm transition-shadow hover:shadow-md"
-          >
-            <p className="text-xs font-medium uppercase tracking-wide text-slate-400">
-              {card.label}
-            </p>
-            <p className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
-              {card.value}
-            </p>
-          </div>
-        ))}
+      <div className="mt-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        {cards.map((card) => {
+          const Icon = card.icon;
+          return (
+            <div
+              key={card.label}
+              className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm transition-shadow hover:shadow-md"
+            >
+              <div
+                className={`flex h-9 w-9 items-center justify-center rounded-lg ${TINTS[card.tint]}`}
+              >
+                <Icon className="h-5 w-5" />
+              </div>
+              <p className="mt-3 text-xs font-medium uppercase tracking-wide text-slate-400">
+                {card.label}
+              </p>
+              <p className="mt-1 text-2xl font-semibold tracking-tight text-slate-900">
+                {card.value}
+              </p>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
