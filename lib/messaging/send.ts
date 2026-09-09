@@ -1,7 +1,7 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { renderTemplate, extractVariableNames } from "@/lib/templates/render";
 import { Msg91SmsProvider, Msg91WhatsAppProvider } from "./msg91";
-import { ResendEmailProvider } from "./resend";
+import { getEmailProvider } from "./email";
 import { getOrgCredentials } from "@/lib/integrations/credentials";
 
 export interface SendTemplatedMessageInput {
@@ -78,9 +78,24 @@ export async function sendTemplatedMessage(input: SendTemplatedMessageInput): Pr
     if (input.channel === "email") {
       const html = renderTemplate(template.body, input.variables, { escapeHtml: true });
       const subject = renderTemplate(template.subject ?? "", input.variables);
-      const credentials = await getOrgCredentials(input.organizationId, "email");
-      const provider = new ResendEmailProvider(credentials);
-      const result = await provider.sendEmail({ to: input.recipient, subject, html });
+      const [emailCredentials, msg91Credentials] = await Promise.all([
+        getOrgCredentials(input.organizationId, "email"),
+        getOrgCredentials(input.organizationId, "msg91"),
+      ]);
+      const provider = getEmailProvider(emailCredentials, msg91Credentials);
+      // MSG91's email API renders its own template from named variables;
+      // Resend ignores templateId/variables and just sends `html`.
+      const stringVars: Record<string, string> = {};
+      for (const [k, v] of Object.entries(input.variables)) {
+        stringVars[k] = String(v ?? "");
+      }
+      const result = await provider.sendEmail({
+        to: input.recipient,
+        subject,
+        html,
+        templateId: template.provider_template_id,
+        variables: stringVars,
+      });
       providerMessageId = result.providerMessageId;
     } else if (input.channel === "sms") {
       if (!template.provider_template_id) {

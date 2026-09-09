@@ -26,6 +26,18 @@ export interface WhatsAppProvider {
 }
 
 export interface EmailProvider {
-  sendEmail(input: { to: string; subject: string; html: string }): Promise<SendResult>;
+  sendEmail(input: {
+    to: string;
+    subject: string;
+    html: string;
+    /**
+     * Provider-side template identifier. Resend ignores this (it sends the
+     * rendered `html` directly). MSG91's email API is template-only, so it
+     * needs this slug plus `variables` and sends the MSG91 template.
+     */
+    templateId?: string | null;
+    /** Named variable values, for providers that render their own template. */
+    variables?: Record<string, string>;
+  }): Promise<SendResult>;
   verifyConfiguration(): Promise<boolean>;
 }
